@@ -26,7 +26,11 @@ export default function SyncPanel({ syncConfig, syncState, tasks, timers, onConn
   const input = `w-full text-sm font-mono border rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-orange-400 ${dark ? 'bg-slate-900 border-slate-600 text-slate-200 placeholder-slate-600' : 'bg-slate-50 border-slate-200 text-slate-800 placeholder-slate-400'}`
 
   async function connect() {
-    if (!token.trim()) return setErr('Paste your GitHub token.')
+    const t = token.trim()
+    if (!t) return setErr('Paste your GitHub token.')
+    if (t.startsWith('github_pat_')) {
+      return setErr('Fine-grained tokens don\'t support the Gist API. Create a classic token (ghp_…) with the "gist" scope instead.')
+    }
     setBusy(true); setErr('')
     try {
       let gist = gistId.trim()
@@ -34,19 +38,21 @@ export default function SyncPanel({ syncConfig, syncState, tasks, timers, onConn
       let loadedTimers = timers
 
       if (gist) {
-        // Existing gist — pull data from it
-        const cfg = { token: token.trim(), gistId: gist }
+        const cfg = { token: t, gistId: gist }
         const remote = await loadGist(cfg)
         if (remote) { loadedTasks = remote.tasks; loadedTimers = remote.timers }
       } else {
-        // New gist — create with current data
-        gist = await createGist(token.trim(), tasks, timers)
+        gist = await createGist(t, tasks, timers)
       }
-      const cfg: SyncConfig = { token: token.trim(), gistId: gist }
+      const cfg: SyncConfig = { token: t, gistId: gist }
       saveSyncConfig(cfg)
       onConnected(cfg, loadedTasks, loadedTimers)
     } catch (e) {
-      setErr(e instanceof Error ? e.message : 'Connection failed. Check your token.')
+      const msg = e instanceof Error ? e.message : ''
+      if (msg.includes('401')) setErr('Invalid token or token expired. Re-generate it in GitHub Settings.')
+      else if (msg.includes('403')) setErr('Token lacks permission. Make sure the "gist" scope is checked.')
+      else if (msg.includes('404')) setErr('GitHub returned 404 — this usually means a fine-grained token. Create a classic token (ghp_…) with the "gist" scope.')
+      else setErr(msg || 'Connection failed. Check your token.')
     } finally {
       setBusy(false)
     }
@@ -112,7 +118,8 @@ export default function SyncPanel({ syncConfig, syncState, tasks, timers, onConn
                 className={input}
               />
               <p className={`text-xs mt-1 ${dark ? 'text-slate-500' : 'text-slate-400'}`}>
-                Needs <code>gist</code> scope · Settings → Developer settings → Tokens (classic)
+                Must be a <strong>classic</strong> token (ghp_…) with the <code>gist</code> scope.<br />
+                GitHub Settings → Developer settings → Personal access tokens → <strong>Tokens (classic)</strong>
               </p>
             </div>
 
