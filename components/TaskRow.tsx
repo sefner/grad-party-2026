@@ -17,7 +17,7 @@ export default function TaskRow({ task, onToggle, onNotesChange, onDelete, showS
 
   return (
     <div className={`transition-colors ${done ? 'bg-transparent' : ''}`}>
-      <div className="flex items-start gap-3 px-4 py-3.5">
+      <div className="flex items-start gap-3 px-4 py-3">
         {/* Checkbox */}
         <button
           onClick={() => onToggle(task.id, task.status)}
@@ -36,7 +36,7 @@ export default function TaskRow({ task, onToggle, onNotesChange, onDelete, showS
 
         {/* Text */}
         <div className="flex-1 min-w-0" onClick={() => onToggle(task.id, task.status)}>
-          <p className={`text-[15px] leading-snug cursor-pointer select-none ${
+          <p className={`text-sm leading-snug cursor-pointer select-none ${
             done ? 'line-through text-slate-400 dark:text-slate-600' : 'text-slate-900 dark:text-slate-100'
           }`}>
             {task.title}

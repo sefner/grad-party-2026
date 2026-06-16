@@ -55,15 +55,15 @@ export default function Dashboard({ tasks, dispatch, onSetView }: Props) {
   ]
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-4">
 
       {/* Countdown hero */}
-      <div className="bg-orange-500 rounded-2xl p-5 text-white">
-        <p className="text-sm font-medium opacity-80">June 20, 2026 · 3:30 PM · 20 guests</p>
-        <p className="text-6xl font-black mt-1 tracking-tight">{days > 0 ? days : '🎉'}</p>
-        <p className="text-lg font-medium mt-0.5 opacity-90">{label}</p>
-        <div className="mt-4 bg-white/20 rounded-full h-2">
-          <div className="bg-white rounded-full h-2 transition-all" style={{ width: `${Math.round(done / total * 100)}%` }} />
+      <div className="bg-orange-500 rounded-2xl p-4 text-white">
+        <p className="text-xs font-medium opacity-80">June 20, 2026 · 3:30 PM · 20 guests</p>
+        <p className="text-5xl font-black mt-1 tracking-tight">{days > 0 ? days : '🎉'}</p>
+        <p className="text-base font-medium mt-0.5 opacity-90">{label}</p>
+        <div className="mt-3 bg-white/20 rounded-full h-1.5">
+          <div className="bg-white rounded-full h-1.5 transition-all" style={{ width: `${Math.round(done / total * 100)}%` }} />
         </div>
         <p className="text-xs opacity-70 mt-1">{done} of {total} tasks complete</p>
       </div>
@@ -121,7 +121,7 @@ export default function Dashboard({ tasks, dispatch, onSetView }: Props) {
               <button
                 key={day}
                 onClick={() => onSetView('by-day')}
-                className="w-full flex items-center gap-4 px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer text-left"
+                className="w-full flex items-center gap-4 px-4 py-2.5 hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer text-left"
               >
                 <span className={`text-sm font-semibold w-8 flex-shrink-0 ${isToday ? 'text-orange-500' : isPast ? 'text-slate-400' : 'text-slate-700 dark:text-slate-300'}`}>
                   {day}
@@ -143,15 +143,15 @@ export default function Dashboard({ tasks, dispatch, onSetView }: Props) {
 
       {/* Quick actions */}
       <div className="grid grid-cols-2 gap-3">
-        <button onClick={() => onSetView('shopping')} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 text-left hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer">
-          <p className="text-2xl mb-1">🛒</p>
+        <button onClick={() => onSetView('shopping')} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-3 text-left hover:bg-slate-50 dark:hover:bg-slate-700 cursor-pointer">
+          <p className="text-xl mb-0.5">🛒</p>
           <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">Shopping</p>
           <p className="text-xs text-slate-400 mt-0.5">
             {tasks.filter(t => t.category === 'shopping' && t.status === 'not_started').length} items left
           </p>
         </button>
-        <button onClick={() => onSetView('run-sheet')} className="bg-orange-500 rounded-2xl p-4 text-left hover:bg-orange-600 cursor-pointer">
-          <p className="text-2xl mb-1">🎯</p>
+        <button onClick={() => onSetView('run-sheet')} className="bg-orange-500 rounded-2xl p-3 text-left hover:bg-orange-600 cursor-pointer">
+          <p className="text-xl mb-0.5">🎯</p>
           <p className="text-sm font-semibold text-white">Run Sheet</p>
           <p className="text-xs text-orange-200 mt-0.5">Party day mode</p>
         </button>

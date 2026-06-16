@@ -4,7 +4,13 @@
 
 * { box-sizing: border-box; }
 
-body { font-family: system-ui, -apple-system, sans-serif; }
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+button, a { touch-action: manipulation; }
 
 @media print {
   .no-print { display: none !important; }

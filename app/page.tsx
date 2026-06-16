@@ -171,7 +171,7 @@ export default function Home() {
 
       {/* Top bar */}
       <header className={`sticky top-0 z-10 ${navBg} border-b ${borderColor} no-print`}>
-        <div className="max-w-xl mx-auto px-4 h-14 flex items-center justify-between">
+        <div className="max-w-xl mx-auto px-4 h-12 flex items-center justify-between">
           <span className={`text-base font-bold ${dark ? 'text-white' : 'text-slate-900'}`}>
             🎓 Grad Party
           </span>
@@ -211,7 +211,7 @@ export default function Home() {
       </header>
 
       {/* Page content */}
-      <main className="max-w-xl mx-auto px-4 pt-5 pb-28">
+      <main className="max-w-xl mx-auto px-4 pt-4 pb-20">
         {view === 'dashboard' && <Dashboard tasks={state.tasks} dispatch={dispatch} onSetView={setView} />}
         {view === 'by-day'    && <ByDayView tasks={state.tasks} dispatch={dispatch} dark={dark} />}
         {view === 'shopping'  && <ShoppingView tasks={state.tasks} dispatch={dispatch} />}
@@ -225,13 +225,13 @@ export default function Home() {
             <button
               key={n.view}
               onClick={() => setView(n.view)}
-              className={`flex-1 flex flex-col items-center gap-0.5 py-3 cursor-pointer transition-colors ${
+              className={`flex-1 flex flex-col items-center gap-0.5 py-2 cursor-pointer transition-colors ${
                 view === n.view
                   ? 'text-orange-500'
                   : dark ? 'text-slate-500' : 'text-slate-400'
               }`}
             >
-              <span className="text-[22px] leading-none">{n.icon}</span>
+              <span className="text-[20px] leading-none">{n.icon}</span>
               <span className="text-[10px] font-medium mt-0.5 tracking-wide">{n.label}</span>
             </button>
           ))}
