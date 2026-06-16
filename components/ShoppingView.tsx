@@ -13,6 +13,8 @@ const STORES: { key: TaskStore; label: string; icon: string }[] = [
   { key: 'Walmart', label: 'Walmart', icon: '🛒' },
 ]
 
+const GROCERY_DEPTS = ['Produce', 'Meat & Deli', 'Pantry', 'Beverages', 'Grill Supplies', 'Ice']
+
 const DONE: TaskStatus[] = ['completed', 'purchased', 'ordered', 'skipped']
 
 interface Props {
@@ -40,7 +42,6 @@ export default function ShoppingView({ tasks, dispatch }: Props) {
   const totalDone = shopping.filter(t => DONE.includes(t.status)).length
   const pct = Math.round(totalDone / shopping.length * 100)
 
-  // Which stores to show
   const storesToShow = activeStore === 'all' ? storesWithItems : storesWithItems.filter(s => s.key === activeStore)
 
   return (
@@ -98,11 +99,84 @@ export default function ShoppingView({ tasks, dispatch }: Props) {
 
       {/* Lists per store */}
       {storesToShow.map(s => {
-        let items = shopping.filter(t => t.store === s.key)
+        const storeItems = shopping.filter(t => t.store === s.key)
+        const storeDone = storeItems.filter(t => DONE.includes(t.status)).length
+
+        if (s.key === 'Grocery') {
+          // Show grocery grouped by department
+          const depts = GROCERY_DEPTS.filter(d => storeItems.some(t => t.groceryDept === d))
+          const undept = storeItems.filter(t => !t.groceryDept)
+          const allGroceryVisible = hideCompleted ? storeItems.filter(t => !DONE.includes(t.status)).length : storeItems.length
+          if (allGroceryVisible === 0) return null
+
+          return (
+            <div key="Grocery">
+              <div className="flex items-center justify-between px-1 mb-2">
+                <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                  🥬 Grocery
+                </h3>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs text-slate-400">{storeDone}/{storeItems.length}</span>
+                  <button
+                    onClick={() => markAllDone('Grocery')}
+                    className="text-xs text-green-600 dark:text-green-400 font-medium hover:underline cursor-pointer"
+                  >
+                    Mark all ✓
+                  </button>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                {depts.map(dept => {
+                  let items = storeItems.filter(t => t.groceryDept === dept)
+                  if (hideCompleted) items = items.filter(t => !DONE.includes(t.status))
+                  if (items.length === 0) return null
+                  return (
+                    <div key={dept}>
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-1 mb-1">{dept}</p>
+                      <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden divide-y divide-slate-100 dark:divide-slate-700">
+                        {items.map(task => (
+                          <TaskRow
+                            key={task.id}
+                            task={task}
+                            onToggle={toggle}
+                            onNotesChange={(id, notes) => dispatch({ type: 'UPDATE_NOTES', id, notes })}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  )
+                })}
+                {/* Any grocery items without a dept tag */}
+                {(() => {
+                  const items = hideCompleted ? undept.filter(t => !DONE.includes(t.status)) : undept
+                  if (items.length === 0) return null
+                  return (
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-1 mb-1">Other</p>
+                      <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden divide-y divide-slate-100 dark:divide-slate-700">
+                        {items.map(task => (
+                          <TaskRow
+                            key={task.id}
+                            task={task}
+                            onToggle={toggle}
+                            onNotesChange={(id, notes) => dispatch({ type: 'UPDATE_NOTES', id, notes })}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  )
+                })()}
+              </div>
+            </div>
+          )
+        }
+
+        // Non-grocery stores — flat list
+        let items = storeItems
         if (hideCompleted) items = items.filter(t => !DONE.includes(t.status))
         if (items.length === 0) return null
-        const storeDone = shopping.filter(t => t.store === s.key && DONE.includes(t.status)).length
-        const storeTotal = shopping.filter(t => t.store === s.key).length
+        const storeTotal = storeItems.length
         return (
           <div key={s.key}>
             <div className="flex items-center justify-between px-1 mb-2">

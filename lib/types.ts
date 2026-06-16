@@ -15,6 +15,7 @@ export interface Task {
   quantity?: string
   priority: TaskPriority
   timeBlock?: string // For Saturday run-sheet grouping e.g. "9:30 AM"
+  groceryDept?: string // Sub-group within Grocery store
   isCustom?: boolean
   recipe?: string // linked recipe name
 }
