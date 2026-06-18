@@ -2,7 +2,7 @@ import type { Task, Timer, Recipe } from './types'
 
 export const INITIAL_TASKS: Task[] = [
   // ── MONDAY JUNE 15 ──────────────────────────────────────────────────────
-  { id: 'mon-001', title: 'Reserve two bone-in pork shoulders (6–7 lb each)', category: 'shopping', dueDate: '2026-06-15', status: 'not_started', store: 'Butcher', priority: 'high', quantity: '2 × 6–7 lb' },
+  { id: 'mon-001', title: 'Reserve one bone-in pork shoulder (10 lb)', category: 'shopping', dueDate: '2026-06-15', status: 'not_started', store: 'Butcher', priority: 'high', quantity: '1 × 10 lb' },
   { id: 'mon-002', title: 'Reserve tri-tip (5.5–6 lb total)', category: 'shopping', dueDate: '2026-06-15', status: 'not_started', store: 'Butcher', priority: 'high', quantity: '5.5–6 lb total' },
   { id: 'mon-003', title: 'Or reserve graduation cake', category: 'shopping', dueDate: '2026-06-15', status: 'not_started', store: 'Bakery', priority: 'high' },
   { id: 'mon-004', title: 'Two rectangular poly-rattan bread baskets (12–15 in)', category: 'shopping', dueDate: '2026-06-15', status: 'not_started', store: 'Amazon', priority: 'medium', quantity: '2' },
@@ -63,7 +63,7 @@ export const INITIAL_TASKS: Task[] = [
   { id: 'mon-059', title: 'Fire starters', category: 'shopping', dueDate: '2026-06-15', status: 'not_started', store: 'Grocery', groceryDept: 'Grill Supplies', priority: 'medium' },
   { id: 'mon-060', title: 'Long lighter', category: 'shopping', dueDate: '2026-06-15', status: 'not_started', store: 'Grocery', groceryDept: 'Grill Supplies', priority: 'medium' },
   { id: 'mon-061', title: 'Drip pans', category: 'shopping', dueDate: '2026-06-15', status: 'not_started', store: 'Grocery', groceryDept: 'Grill Supplies', priority: 'medium' },
-  { id: 'mon-062', title: 'Confirm both pork shoulders fit on indirect side of Weber', category: 'equipment', dueDate: '2026-06-15', status: 'not_started', store: 'Home', priority: 'high' },
+  { id: 'mon-062', title: 'Confirm pork shoulder fits on indirect side of Weber', category: 'equipment', dueDate: '2026-06-15', status: 'not_started', store: 'Home', priority: 'high' },
   { id: 'mon-063', title: 'Test leave-in thermometer', category: 'equipment', dueDate: '2026-06-15', status: 'not_started', store: 'Home', priority: 'high' },
   { id: 'mon-064', title: 'Test instant-read thermometer', category: 'equipment', dueDate: '2026-06-15', status: 'not_started', store: 'Home', priority: 'high' },
   { id: 'mon-065', title: 'Test sous vide circulator', category: 'equipment', dueDate: '2026-06-15', status: 'not_started', store: 'Home', priority: 'high' },
@@ -91,7 +91,7 @@ export const INITIAL_TASKS: Task[] = [
   { id: 'tue-013', title: 'Create Friday fresh shopping list', category: 'prep', dueDate: '2026-06-16', status: 'not_started', store: 'Home', priority: 'medium' },
 
   // ── WEDNESDAY JUNE 17 ───────────────────────────────────────────────────
-  { id: 'wed-001', title: 'Two bone-in pork shoulders', category: 'shopping', dueDate: '2026-06-17', status: 'not_started', store: 'Butcher', priority: 'high', quantity: '2 × 6–7 lb' },
+  { id: 'wed-001', title: 'Bone-in pork shoulder (10 lb)', category: 'shopping', dueDate: '2026-06-17', status: 'not_started', store: 'Butcher', priority: 'high', quantity: '1 × 10 lb' },
   { id: 'wed-002', title: 'Tri-tip (if not already purchased)', category: 'shopping', dueDate: '2026-06-17', status: 'not_started', store: 'Butcher', priority: 'high', quantity: '5.5–6 lb total' },
   { id: 'wed-003', title: 'Yukon Gold potatoes', category: 'shopping', dueDate: '2026-06-17', status: 'not_started', store: 'Grocery', groceryDept: 'Produce', priority: 'high', quantity: '5 lb' },
   { id: 'wed-004', title: 'Celery stalks', category: 'shopping', dueDate: '2026-06-17', status: 'not_started', store: 'Grocery', groceryDept: 'Produce', priority: 'high', quantity: '4 stalks' },
@@ -109,8 +109,8 @@ export const INITIAL_TASKS: Task[] = [
   { id: 'wed-016', title: 'Missing pantry items', category: 'shopping', dueDate: '2026-06-17', status: 'not_started', store: 'Grocery', groceryDept: 'Pantry', priority: 'medium' },
   { id: 'wed-017', title: 'Make potato salad (refrigerate)', category: 'prep', dueDate: '2026-06-17', status: 'not_started', store: 'Home', priority: 'high', recipe: 'Vinegary Yukon Gold Potato Salad' },
   { id: 'wed-018', title: 'Make quick-pickled red onions (if not done Mon)', category: 'prep', dueDate: '2026-06-17', status: 'not_started', store: 'Home', priority: 'high', recipe: 'Quick-Pickled Red Onions' },
-  { id: 'wed-019', title: 'Trim pork shoulders', category: 'prep', dueDate: '2026-06-17', status: 'not_started', store: 'Home', priority: 'high' },
-  { id: 'wed-020', title: 'Season pork shoulders with rub — refrigerate uncovered overnight', category: 'prep', dueDate: '2026-06-17', status: 'not_started', store: 'Home', priority: 'high', recipe: 'Pork Shoulder Rub' },
+  { id: 'wed-019', title: 'Trim pork shoulder', category: 'prep', dueDate: '2026-06-17', status: 'not_started', store: 'Home', priority: 'high' },
+  { id: 'wed-020', title: 'Season pork shoulder with rub — refrigerate uncovered overnight', category: 'prep', dueDate: '2026-06-17', status: 'not_started', store: 'Home', priority: 'high', recipe: 'Pork Shoulder Rub' },
   { id: 'wed-021', title: 'Organize serving vessels — match utensils to each dish', category: 'setup', dueDate: '2026-06-17', status: 'not_started', store: 'Home', priority: 'medium' },
 
   // ── THURSDAY JUNE 18 ────────────────────────────────────────────────────
@@ -127,8 +127,8 @@ export const INITIAL_TASKS: Task[] = [
   { id: 'fri-001', title: 'Remove pork from refrigerator', category: 'cooking', dueDate: '2026-06-19', dueTime: '05:00', timeBlock: '5:00 AM', status: 'not_started', store: 'Home', priority: 'high' },
   { id: 'fri-002', title: 'Light Slow \'N Sear — fill nearly full unlit, light 10–15 at one end', category: 'cooking', dueDate: '2026-06-19', dueTime: '05:00', timeBlock: '5:00 AM', status: 'not_started', store: 'Home', priority: 'high', notes: 'Target 260–285°F. Fill water reservoir with hot water. Top vent over meat. Bottom vent ¼ open, top vent ½ open.' },
   { id: 'fri-003', title: 'Place pork on grill (thicker side toward heat) — insert leave-in probe', category: 'cooking', dueDate: '2026-06-19', dueTime: '05:30', timeBlock: '5:30 AM', status: 'not_started', store: 'Home', priority: 'high', notes: 'Place 1 oak chunk over lit coals, 2 more partially buried farther along. Add 1–2 reserve chunks only if smoke disappears in first 3–4 hrs.' },
-  { id: 'fri-004', title: 'Check cooker temp hourly — refill water reservoir as needed', category: 'cooking', dueDate: '2026-06-19', timeBlock: 'Ongoing', status: 'not_started', store: 'Home', priority: 'high', notes: 'Target 260–285°F. Rotate shoulders if one runs hotter. Lightly spritz if surface looks dry after 3 hrs (50/50 cider vinegar and water).' },
-  { id: 'fri-005', title: 'Wrap pork in heavy foil when bark is set and IT is 165–175°F', category: 'cooking', dueDate: '2026-06-19', timeBlock: 'When ready', status: 'not_started', store: 'Home', priority: 'high', notes: 'Bark dark mahogany, rub does not wipe off, surface dry. Add ≤ ¼ cup broth/juice per shoulder inside wrap. No more oak after wrapping.' },
+  { id: 'fri-004', title: 'Check cooker temp hourly — refill water reservoir as needed', category: 'cooking', dueDate: '2026-06-19', timeBlock: 'Ongoing', status: 'not_started', store: 'Home', priority: 'high', notes: 'Target 260–285°F. Lightly spritz if surface looks dry after 3 hrs (50/50 cider vinegar and water).' },
+  { id: 'fri-005', title: 'Wrap pork in heavy foil when bark is set and IT is 165–175°F', category: 'cooking', dueDate: '2026-06-19', timeBlock: 'When ready', status: 'not_started', store: 'Home', priority: 'high', notes: 'Bark dark mahogany, rub does not wipe off, surface dry. Add ≤ ¼ cup broth/juice inside wrap. No more oak after wrapping.' },
   { id: 'fri-006', title: 'Check doneness starting at 198°F — done at 198–205°F', category: 'cooking', dueDate: '2026-06-19', timeBlock: 'When ready', status: 'not_started', store: 'Home', priority: 'high', notes: 'Probe slides in with almost no resistance. Bone loosens easily.' },
   { id: 'fri-007', title: 'Rest pork wrapped for 45–60 min minimum', category: 'cooking', dueDate: '2026-06-19', timeBlock: 'After cook', status: 'not_started', store: 'Home', priority: 'high', notes: 'Can hold in 150–170°F oven or towel-lined dry cooler.' },
   { id: 'fri-008', title: 'Pull pork — save juices, remove bone, pull, cool in shallow pans ≤ 2 in deep', category: 'cooking', dueDate: '2026-06-19', timeBlock: 'After rest', status: 'not_started', store: 'Home', priority: 'high', notes: 'Defat reserved juices. Mix enough back in to moisten. Refrigerate uncovered until cold, then vacuum-seal or cover tightly.' },
@@ -254,10 +254,10 @@ export const RECIPES: Recipe[] = [
   },
   {
     id: 'pork-rub',
-    name: 'Pork Shoulder Rub (per 6–7 lb shoulder)',
-    ingredients: ['1½ tbsp Diamond Crystal kosher salt', '2 tbsp brown sugar', '2 tbsp paprika', '1 tbsp coarse black pepper', '2 tsp granulated garlic', '2 tsp onion powder', '1 tsp cumin', '1 tsp chili powder'],
-    steps: ['Trim loose flaps and hard fat — leave most fat intact.', 'Combine all rub ingredients.', 'Coat all surfaces evenly.', 'Refrigerate uncovered overnight.', 'Smoke Friday starting 5:30 AM at 260–285°F.'],
-    notes: 'Apply Wednesday night. Double the recipe for two shoulders.',
+    name: 'Pork Shoulder Rub (10 lb shoulder)',
+    ingredients: ['2¼ tbsp Diamond Crystal kosher salt', '3 tbsp brown sugar', '3 tbsp paprika', '1½ tbsp coarse black pepper', '1 tbsp granulated garlic', '1 tbsp onion powder', '1½ tsp cumin', '1½ tsp chili powder'],
+    steps: ['Trim loose flaps and hard fat — leave most fat intact.', 'Combine all rub ingredients.', 'Coat all surfaces evenly.', 'Refrigerate uncovered overnight.', 'Smoke Friday starting 5:30 AM at 260–285°F. A 10 lb shoulder may take 13–16 hrs — rest in a 150–170°F oven or towel-lined cooler if done early.'],
+    notes: 'Apply Wednesday night. Sized for one 10 lb bone-in shoulder.',
   },
   {
     id: 'pinquito-beans',

@@ -53,3 +53,12 @@ export function resetToDefaults(defaultTasks: Task[], defaultTimers: Timer[]) {
   saveTasks(defaultTasks)
   saveTimers(defaultTimers)
 }
+
+export function mergeTasksWithDefaults(stored: Task[], defaults: Task[]): Task[] {
+  const defaultMap = new Map(defaults.map(t => [t.id, t]))
+  return stored.map(t => {
+    const def = defaultMap.get(t.id)
+    if (!def) return t  // custom tasks not in defaults — preserve as-is
+    return { ...def, status: t.status }  // take updated metadata, keep checked state
+  })
+}

@@ -2,7 +2,7 @@
 import { useReducer, useEffect, useState, useRef, useCallback } from 'react'
 import type { Task, Timer, AppView, AppAction } from '@/lib/types'
 import { INITIAL_TASKS, INITIAL_TIMERS, RECIPES } from '@/lib/data'
-import { loadTasks, saveTasks, loadTimers, saveTimers, loadDarkMode, saveDarkMode, exportJSON, resetToDefaults } from '@/lib/storage'
+import { loadTasks, saveTasks, loadTimers, saveTimers, loadDarkMode, saveDarkMode, exportJSON, resetToDefaults, mergeTasksWithDefaults } from '@/lib/storage'
 import type { SyncConfig, SyncState } from '@/lib/sync'
 import { loadSyncConfig, saveGist } from '@/lib/sync'
 import Dashboard from '@/components/Dashboard'
@@ -95,7 +95,7 @@ export default function Home() {
   // Hydrate from localStorage and optionally Gist
   useEffect(() => {
     const t = loadTasks(); const ti = loadTimers()
-    if (t?.length) dispatch({ type: 'LOAD_TASKS', tasks: t })
+    if (t?.length) dispatch({ type: 'LOAD_TASKS', tasks: mergeTasksWithDefaults(t, INITIAL_TASKS) })
     if (ti?.length) dispatch({ type: 'LOAD_TIMERS', timers: ti })
     setDark(loadDarkMode())
 
